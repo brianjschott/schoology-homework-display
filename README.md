@@ -1,0 +1,1 @@
+Install the nodemon and the livereload packages
