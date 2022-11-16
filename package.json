@@ -1,15 +1,16 @@
 {
   "name": "schoology-homework-display",
-  "version": "1.0.0",
-  "description": "Web server that outputs a webpage w/ current homework in that course",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "dot-env": "^0.0.1",
-    "materialize-css": "^1.0.0-rc.2"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "hbs": "~4.0.4",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
   }
 }
