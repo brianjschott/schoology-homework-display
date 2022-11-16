@@ -1,0 +1,14 @@
+{
+  "name": "schoology-homework-display",
+  "version": "1.0.0",
+  "description": "Web server that outputs a webpage w/ current homework in that course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "materialize-css": "^1.0.0-rc.2"
+  }
+}
