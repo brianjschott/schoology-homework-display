@@ -5,24 +5,25 @@ const {v4: uuidv4} = require('uuid')
 const https = require('node:https');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', async function(req, res) {
+  await makeSchoologyRequest(`/v1/users/${process.env.user_id}/sections`).then(parsedData => {
+    sections = JSON.parse(parsedData)["section"]
+    res.render('index', { sections });
+  })
+  
 });
 
-/* GET home page. */
-router.get('/course/:courseID',  async function(req, res, next) {
+/* Course Info Route */
+router.get('/course/:courseID',  async function(req, res) {
+    console.log("Get page for course ID")
     await getAllEventsForCourse(req.params.courseID).then(parsedData => {
-    console.log("parsed data is ", parsedData)
-    res.render('coursepage', { courseList: parsedData });
+      res.render('coursepage', { courseList: parsedData });
   });
-  //console.log(parsedData)
-  //authenticate with Schoology and send GET request via HTTPS
-
 });
 
 //returns parsed JSON object at a given path
 async function makeSchoologyRequest(path) {
-  var data = []
+  let data = []
 
   return new Promise(resolve => {
     https.get({
@@ -41,7 +42,7 @@ async function makeSchoologyRequest(path) {
         data.push(d);
       });
       schoologyResponse.on('end', () => {
-        data = data.join();
+        data = data.join("");//join with no spaces to avoid extra comma in JSON
         console.log("Data assembled", data);
         //then join the entire array as a big string, then parse it as JSON
         resolve(data);
